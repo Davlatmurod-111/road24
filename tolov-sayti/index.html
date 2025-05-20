@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To‘lov tizimi road 24</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        background: white;
+        width: 100%;
+        max-width: 400px;
+        margin: 20px;
+        padding: 30px 20px;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #222;
+        margin-bottom: 20px;
+      }
+      input {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+      button {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        background: #2962ff;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0039cb;
+      }
+      .pay-section {
+        display: none;
+      }
+      .card-info {
+        background: #f7f9fc;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+      }
+      .card-number {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+      .owner {
+        margin-top: 6px;
+        font-size: 16px;
+        color: #555;
+      }
+      .amount {
+        margin-top: 14px;
+        font-size: 18px;
+        color: #2962ff;
+        font-weight: bold;
+      }
+      .success-message {
+        display: none;
+        text-align: center;
+        margin-top: 25px;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 18px;
+      }
+      @media screen and (max-width: 480px) {
+        .container {
+          padding: 20px 15px;
+        }
+        input,
+        button {
+          font-size: 15px;
+        }
+        .card-number {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Kirish sahifasi -->
+      <div id="form-section">
+        <h2>To‘lov summasini kiriting</h2>
+        <input type="number" id="amount" placeholder="Masalan: 20000 so‘m" />
+        <button onclick="showPayment()">To‘lovga o‘tish</button>
+      </div>
+
+      <!-- To‘lov sahifasi -->
+      <div class="pay-section" id="pay-section">
+        <h2>To‘lov ma’lumotlari</h2>
+        <div class="card-info">
+          <div class="card-number">5614 6818 1861 7551</div>
+          <div class="owner">T.N</div>
+          <div class="amount" id="display-amount"></div>
+        </div>
+
+        <button style="margin-top: 20px" onclick="submitPayment()">
+          To‘lov qildim
+        </button>
+
+        <div class="success-message" id="success-message">
+          To‘lovingiz qabul qilindi!<br />
+          Operatorlar tomonidan tekshirilmoqda...
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showPayment() {
+        const amount = document.getElementById("amount").value;
+        if (!amount || amount < 1000) {
+          alert("Iltimos, kamida 1000 so‘m kiriting.");
+          return;
+        }
+        document.getElementById("display-amount").innerText = amount + " so‘m";
+        document.getElementById("form-section").style.display = "none";
+        document.getElementById("pay-section").style.display = "block";
+      }
+
+      function submitPayment() {
+        document.getElementById("success-message").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
